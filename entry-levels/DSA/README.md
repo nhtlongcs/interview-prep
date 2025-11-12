@@ -1,6 +1,4 @@
-Dưới đây là **bản roadmap tinh gọn**, tập trung 100% vào **Data Structures + Patterns cơ bản**, nhưng theo hướng phân tích tư duy chứ không chỉ giải LeetCode.
-
----
+https://www.youtube.com/watch?v=ND_2kDm2BWE
 
 ## 🎯 Mục tiêu tổng thể
 
