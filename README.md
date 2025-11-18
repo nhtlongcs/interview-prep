@@ -1,4 +1,4 @@
-### Ultimate Interview Preparation Guide:
+### Ultimate Interview Preparation Guide
 
 Create a cheatsheet yourself, based on your own experience and the resources you find useful. Sort them by topics & difficulty, and keep updating it as you learn more.
 
