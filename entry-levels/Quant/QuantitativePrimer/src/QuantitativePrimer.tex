@@ -1,0 +1,2001 @@
+\documentclass[a4paper]{article}
+\usepackage{qabook}
+
+% Version number policy:
+% Should be of the format V<A>.<B>.<C>
+% A: Increment with major changes in layouts, large new sections added.
+% B: Increment when new questions are added
+% C: Increment with minor error corrections and additions
+% When B is incrememted, C is reset to zero
+% When A is incrememted, B and C is reset to zero
+\newcommand{\docversion}{V1.2.0}
+\begin{document}
+
+%\doublespacing
+%\linenumbers
+
+\renewcommand{\thepage}{\roman{page}}
+\setcounter{page}{0}
+
+\begin{titlepage}
+\titleDB
+\end{titlepage}
+
+
+
+\begin{center}
+This work is licensed under a
+\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-ShareAlike 4.0}
+\\ International License.
+\end{center}
+
+
+\begin{center}
+You are free to:
+\end{center}
+
+\begin{description}
+  \item[Share:] Copy and redistribute the material in any medium or format. In fact, you are encouraged to do so.
+  \item[Adapt:] Remix, transform, and build upon the material
+for any purpose, even commercially.
+\end{description}
+
+\begin{center}
+Under the following terms:
+\end{center}
+
+\begin{description}
+\item[Attribution:] You must give appropriate credit to the original author, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
+\item[Share Alike:] If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+\item[No additional restrictions:] You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+\end{description}
+
+\begin{center}
+\url{https://creativecommons.org/licenses/by-sa/4.0/legalcode}
+\end{center}
+
+\vfill
+\begin{center}
+For errors, comments, or suggestions, contact Dirk Bester\\
+\href{mailto:bester.dirkw@gmail.com}{bester.dirkw@gmail.com}\\
+\href{https://www.linkedin.com/in/dwbester}{www.linkedin.com/in/dwbester}.\\
+Visit the GitHub page to ensure you are reading the latest version \\
+\href{https://github.com/dwcoder/QuantitativePrimer}{github.com/dwcoder/QuantitativePrimer}.\\
+\texttt{This pdf was compiled on \moddate{\jobname.tex}.} \\
+\end{center}
+
+\vfill
+\noindent
+Special thanks to Luke Miller, Robert Tillman, and Jonathan Hon for some clever solutions,
+William Xing for catching typos and suggestions on soft questions,
+Iztok Pizorn for corrections in the code,
+Nita Bester for proofreading and support,
+and Joshua Curk for editing.
+
+
+\clearpage
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\clearpage
+
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
+
+\phantomsection
+\addcontentsline{toc}{section}{Introduction}
+\section*{Introduction}
+
+Interview preparation is the most important part of working life.
+Relative to its duration, interviewing is the activity with the largest influence on future income.
+It determines how you will be spending your time, who you will be spending it with, and what you will learn from this expenditure in time, effort, and money.
+In addition to competence and merit, it takes confidence to convince the person on the other side of the table that you should be hired.
+Confidence takes practise.
+You can't lift 200kg without proper training.
+You can't excel at interviews without befitting preparation.
+The best way to improve your interviewing is to do interviews and learn from your mistakes.
+The second best way is to learn from the mistakes of others, and ensure your preparation matches what you will encounter.
+
+
+Quantitative finance is notorious for the large number of difficult interviews that precede an offer.
+These interviews are laden with brainteasers and puzzles to test your abilities, and conveniently also serve to whittle down a large candidate pool.
+Candidates who study interview technique increase their probability of traversing the interview gauntlet.
+There are great books with sample questions and answers and candidates should work through most of these before attempting any interviews.
+The classic text is \citet{HeardOnTheStreet}, and this is the one recruiters will suggest.
+Another book is \citet{JoshiQA}.
+I prefer it to the former since it has more in-depth discussions about the interview process, it has an entire chapter dedicated to C++ questions, and it includes references to further reading on topics encountered throughout the questions.
+\citet{WilmottFAQ} supplements these by acting as a handy reference for jargon.
+A suggested reading order appears in the next section.
+
+I interviewed in London in 2014 and again in 2017,
+meeting with more than 20 firms.%
+\footnote{Including, but not limited to,
+  Barclays,
+  BlackRock,
+  BNP Paribas,
+  Cumulus,
+  G-research,
+  Goldman Sachs,
+  GSA Capital,
+  JP Morgan,
+  MAN group,
+  Oxford Asset Management,
+  Royal Bank of Canada,
+  Royal Bank of Scotland,
+  SquarePoint Capital,
+  Two Sigma,
+  UBS,
+and
+  Winton Capital.
+}
+These included phone interviews, Skype interviews, online pair-programming sessions, on-site exams, take-home exams, face-to-face interviews, and multiple onsites or superdays (several interviews in one day).
+The preparation books mentioned above provided great practise questions, but I feel there is more to be said on interview form.
+Therefore I have prepared this text with questions I encountered, split up by interviews, to give readers an indication of exactly what to expect.
+Rather than providing a large collection of questions and answers, this text focuses on the intent of the questions, a deep dive into the answers, and suggestions on communicating them during an interview.
+
+\index{rejection, dealing with}
+Interviewing is a numbers game.
+Assume you will get one out of ten jobs you interview for and act accordingly, but don't go to any interviews without serious preparation.
+Don't get too sentimental about any one team or role, and don't take rejection as a comment on your abilities.
+During my 2014 interview spate I received an offer from a hedge fund who told me I was one of the strongest candidates in their graduate pool.
+A day later I received a first-round rejection from another hedge fund who derided my abilities to do basic mathematics.
+Rather than pick sides, I implore the reader to accept that it is difficult for someone to judge your ability by asking you a few brainteasers or proofs---to which they already know the answer---with only ten minutes allowed for the exercise.
+
+\phantomsection
+\addcontentsline{toc}{subsection}{How to prepare}
+\subsection*{How to prepare}
+
+The minimum amount of preparation required will depend on how much you currently do and enjoy brainteasers, coding puzzles, and statistical proofs.
+Of course, you'll want to do more than the minimum.
+I suggest you begin with the text you are reading now, starting with a review of the calculus mentioned in appendix \ref{ap:cribsheet}.
+If you can successfully do all the questions on your first try, you are probably ready.
+Read through the solutions, paying attention to how the interviewers expect you to present the answers, and in order to get an idea about how interviews progress.
+
+If you struggle with some of the questions, work through similar questions in \citep{JoshiQA}.
+Also, make sure you work through some of \citet{HeardOnTheStreet}, but allocate more time to \citet{JoshiQA}.
+The former text is a classic, but it is starting to show its age---the first version was published in 1995.
+The latter is more up to date and the lead author, Mark Joshi, has written plenty on quantitative-finance interviews, like
+\emph{On Becoming a Quant}.\footnote{\url{http://www.markjoshi.com/downloads/advice.pdf}}
+Keep \citet{WilmottFAQ} on your night table---it's excellent both as a general reference work, and as a repository of the nastier brainteasers.
+
+For general bed-time reading---as opposed to hard-core, interview-preparatory reading---I suggest
+\citet{mcneil2015quantitative}, who give a thorough overview of models used for quantitative risk management, and
+\citet{andersen2009handbook}, who provide an exhaustive review of modelling financial time series.
+These two are tomes---you won't be able to read them cover to cover.
+Don't just skim them and say you've read them.
+Pick the chapter you find most palatable in each book and read it
+closely enough that you can have a short discussion about it, and sound like you know what you're talking about.
+\citet{narang2013inside} presents a non-technical overview of quantitative and high-frequency trading (minus the hype), and does plenty to demystify the field.
+For the hype, see
+\emph{The Quants} by \citet{patterson2010quants}
+or
+\emph{Flash Boys} by \citet{lewis2014flash}.
+Not everyone who self-identifies as a quant agrees with the contents of these, but most people in the industry have read them.
+For a less flattering take, see the review of \emph{The Quants} by \citet{steinsaltz2011value} that appeared in the Notices of the American Mathematical Society.%
+\footnote{\url{steinsaltz.me.uk/papers/quants_published.pdf}}
+
+\phantomsection
+\addcontentsline{toc}{subsection}{Recruiters}
+\subsection*{Recruiters}
+\index{recruiters}
+Few resources explain how to interact with recruiters, and the ones that do tend to be written by people who have had bad experiences.
+This is obviously not representative.
+In my experience the following points are important.
+
+\emph{Don't feel bad when a recruiter goes cold on you.}
+Sometimes a recruiter will stop replying to your messages, especially after a failed interview.
+Think about it from their perspective.
+They are probably sending 10 or 20 CVs to each position.
+They don't have time to get sentimental about candidates---it's nothing but a numbers game for them.
+They have quotas to match and bosses to keep happy, and thus cannot always give all of their candidates equal amounts of attention.
+
+\emph{Don't be rude to recruiters.}
+Interviewing is frustrating. Especially after several interviews with several recruiters.
+Each will involve a call and a get-to-know-you chat where you have to sell yourself; keep in mind that it could very well be for naught.
+When the frustration hits, consider this:
+you have nothing to gain from being rude.
+You might actually do damage to your reputation by being rude, since the market is small and recruiters talk.
+You might feel used and abused, but
+you have nothing to gain from being rude to a recruiter.
+Even if you are not currently job hunting and a recruiter cold calls you, be courteous.
+Even if you perceive unprofessional behaviour, be polite.
+
+\emph{Don't get sentimental.}
+If things don't work out, the person who had the highest expectations is hurt the most.
+You can't control the outcomes---only against exaggerated expectations.
+Like counting your chickens before they hatch, it is generally a bad idea to get too excited after  what felt like a successful interview, if only because it can interfere with your focus.
+Like the aforementioned recruiters, play the numbers game and treat every interview like just another interview.
+This is a difficult mindset to have if you really need or want a job, but it is a healthy one, especially when the time comes to negotiate.
+
+
+\section{Interviews}
+
+I made every attempt to record my interviews in 2017.
+Keeping an interview journal will help you prepare for future interviews.
+Some of the firms have candidates sign non-disclosure agreements, prohibiting you from sharing the questions, though most don't.
+This text respects the contractual obligations I am subject to.
+
+\citet{HeardOnTheStreet},
+\citet{JoshiQA}, and
+\citet{WilmottFAQ} already exist, so I will not attempt to recreate them.
+Instead, I will focus not only on \emph{what} to answer, but \emph{how} to answer.
+I would often use answers from these texts, only to find that interviewers were unsatisfied.
+They would literally say ``Yes, but could you answer it again, this time in a different way.''
+Not only were they looking for a textbook answer, they were looking for \emph{a specific} textbook answer.
+I also give the duration of each interview.
+This isn't the amount of time allocated to the technical questions---for those you usually have  5--15 minutes to solve each problem.
+\index{questions}
+
+\subsection{Face-to-face, 1 hour}
+
+\begin{question}{rolltwodice}
+\index{questions!dice, one larger}
+Roll two dice. What is the probability that one is larger than the other?
+\end{question}
+
+\begin{question}{bivariatenormalmax}
+\index{questions!E@ $E(\text{max})$ bivariate normal}
+If
+\begin{align*}
+  \begin{bmatrix}
+  X \\ Y
+  \end{bmatrix}
+  \sim
+  \operatorname{MultivariateNormal}
+  \left(
+  \begin{bmatrix}
+  0 \\ 0
+  \end{bmatrix}
+  ,
+  \begin{bmatrix}
+  1      &   \rho \\
+  \rho   &   1    \\
+  \end{bmatrix}
+  \right)
+\end{align*}
+find $\operatorname{E}[\max(X,Y)]$.
+\end{question}
+
+\begin{question}{makematrixfrombunchofvectors}
+\index{questions!R!make matrix from vectors}
+How would you make a matrix from a bunch of vectors in R?
+\end{question}
+
+\begin{question}{pythonlistreturnlast}
+\index{questions!Python!return last item}
+If \verb+mylist+ is a list in Python, what is \verb+mylist[-1]+?
+\end{question}
+
+\begin{question}{cppvirtualfunctionwhy}
+\index{questions!C++ virtual function}
+What is a C++ virtual function, and why do we need them?
+\end{question}
+
+\clearpage
+\input{answers/rolltwodice.tex}
+\input{answers/bivariatenormalmax.tex}
+\input{answers/makematrixfrombunchofvectors.tex}
+\input{answers/pythonlistreturnlast.tex}
+\input{answers/cppvirtualfunctionwhy.tex}
+
+
+
+\clearpage
+\subsection{Face-to-face, 1 hour}
+\begin{question}{normalfourthmoment}
+\index{questions!normal fourth moment}
+Derive $\operatorname{E}(X^4)$ where $X \sim \text{Normal}\left(0, \sigma^2\right)$.
+\end{question}
+
+
+\begin{question}{arraymissingnumber}
+\index{questions!array with missing number}
+You have an unsorted array containing integers $1,2,3, \ldots, n$, but one number is missing.
+Describe an algorithm to find the missing number and discuss its complexity.
+\end{question}
+
+
+\begin{subquestion}{arraymissingnumber:a}
+Describe an algorithm assuming there are $k$ missing numbers, where $k$ is much smaller than $n$.
+\end{subquestion}
+
+
+\begin{subquestion}{arraymissingnumber:b}
+Describe an algorithm assuming the initial array was sorted.
+\end{subquestion}
+
+
+\clearpage
+\input{answers/normalfourthmoment.tex}
+\input{answers/arraymissingnumber.tex}
+\input{answers/arraymissingnumber_a.tex}
+\input{answers/arraymissingnumber_b.tex}
+
+
+\clearpage
+\subsection{Face-to-face, 1 hour}
+\begin{question}{normalestimatorssamplingdistribution}
+\index{questions!normal estimators}
+Suppose
+$Y \sim \text{Normal}(\mu, \sigma^2)$.
+Now, $10^6$ people each draw 1000 samples from this distribution.
+Let $i$ denote the $i$th person.
+Each person estimates the parameters of the normal distribution
+$\hat{\mu}_i$
+and
+$\hat{\sigma}^2_i$
+using their samples
+$Y_1, Y_2, \ldots , Y_{1000}$.
+How should they do this?
+If you draw a histogram of the $10^6$ estimates of
+$\hat{\mu}_i$ and $\hat{\sigma}^2_i$, what would their distributions be?
+How would you prove the exact sampling distribution of $\hat{\sigma}^2_i$?
+\end{question}
+
+
+\begin{question}{derivativeofinverse}
+\index{questions!derivative of inverse}
+If we have  $g'(x)$,
+what can you say about $\frac{d}{dx} g^{-1}(x)$?
+\end{question}
+
+\clearpage
+\input{answers/normalestimatorssamplingdistribution.tex}
+\input{answers/derivativeofinverse.tex}
+
+
+\clearpage
+\subsection{Phone interview, 45 minutes}
+\begin{question}{coin100flipsgamble}
+\index{questions!coin flip gamble}
+You are presented with the following gamble: you flip 100 fair coins.
+If 60 or more land on heads, you win \pounds 10; you win nothing on all other outcomes.
+Should you play this game for \pounds 1?
+\end{question}
+
+\begin{question}{iszerocorrelationindependent}
+\index{questions!correlation and dependence}
+You have $X \sim \text{Normal}(0,1)$ and $Y \sim \text{Normal}(0,1)$.
+If the correlation coefficient is $\rho_{XY}=0$, are $X$ and $Y$ independent?
+\end{question}
+
+
+\begin{subquestion}{iszerocorrelationindependentexamples}
+\index{questions!correlation and dependence}
+Give some examples where $X$ and $Y$ are in fact dependent, but where the above still holds.
+\end{subquestion}
+
+\clearpage
+\input{answers/coin100flipsgamble.tex}
+\input{answers/iszerocorrelationindependent.tex}
+\input{answers/iszerocorrelationindependentexamples.tex}
+
+
+\clearpage
+\subsection{Online pair-programming interview, 60 minutes}
+\begin{question}{twournsallocateballs}
+\index{questions!urns and balls}
+You have two urns, five red balls, and five blue balls.
+You can distribute the balls into the urns any way you like, but each urn must have at least one ball in it.
+I will choose one urn at random ($p=0.5$) and then draw one ball from it.
+If the ball is blue, you win.
+How should you distribute the balls to maximise your probability of winning?
+Log into this pair-programming website and use Python or C++ to solve the problem while I watch.
+\end{question}
+
+\clearpage
+\input{answers/twournsallocateballs.tex}
+
+
+\clearpage
+\subsection{Phone interview, 45 minutes}
+\begin{question}{judgescorrectverdict}
+\index{questions!three judges}
+
+There are three judges in a court, who have the following probabilities of reaching the correct verdict:
+\begin{center}
+\begin{tabular}{ccc}
+Judge 1 & Judge 2 & Judge 3 \\
+$p$ &
+$p$ &
+$\nicefrac{1}{2}$ \\
+\end{tabular}
+\end{center}
+A verdict is only decided if at least two of the judges agree.
+What is the probability of the court reaching the correct verdict?
+\end{question}
+
+
+\begin{question}{regressiontheory1}
+\index{questions!regression theory}
+Suppose you wanted to model $Y$ using $X$, and you decided to use the linear regression:
+\[
+  Y = X \beta + \varepsilon
+  \text{.}
+\]
+What assumptions are being made?
+How would you find $\beta$?
+What tests can be done on $\beta$ afterwards?
+\end{question}
+
+
+\begin{question}{bayeslawdisease}
+\index{questions!Bayes' law}
+One percent of people in the world have a given disease,
+the test for which is imperfect.
+The test has an 80\% chance of showing positive if you have the disease, but if you do not have the disease,
+there is a 10\% chance of showing a false positive.
+What is the probability that you actually have the disease if your test results are positive?
+\end{question}
+
+\clearpage
+\input{answers/judgescorrectverdict.tex}
+\input{answers/regressiontheory1.tex}
+\input{answers/bayeslawdisease.tex}
+
+\clearpage
+\subsection{Onsite, 5 interviews, 3 hours}
+\begin{question}{derivexpowx}
+\index{questions!derive $x^x$}
+What is $\frac{d}{dx}x^x$?
+\end{question}
+
+
+\begin{question}{epiandpie}
+\index{questions!E@$e$ and $\pi$}
+Which is larger,
+$e^\pi$
+or
+$\pi^e$?
+\end{question}
+
+
+
+\begin{question}{ar1processmeanandvar}
+\index{questions!AR(1) process}
+Given the AR(1) process
+\begin{align*}
+  Y_t &= \alpha_0 + \alpha_1 Y_{t-1} + \varepsilon_{t} \\
+   & \text{where} \\
+   \varepsilon_{t} &\sim \text{Normal}(0,\sigma_{\varepsilon}^2)
+   \text{,}
+\end{align*}
+what are
+$\E(Y_t)$
+and
+$\Var(Y_t)$?
+\end{question}
+
+
+\begin{question}{constructzerocorrelation}
+\index{questions!correlation and dependence}
+If $X \sim \text{Normal}(0, 1)$ and $Y$ has a distribution where:
+\begin{align*}
+ P(Y=-1) &=  \nicefrac{1}{2} \\
+ P(Y=1)  &=  \nicefrac{1}{2}
+\end{align*}
+what is the cumulative distribution function of $Z=XY$?
+\end{question}
+
+
+\begin{question}{iszerocovarianceindependent}
+\index{questions!correlation and dependence}
+If $\Cov(X,Y)=0$, are $X$ and $Y$ independent?
+\end{question}
+
+
+\begin{question}{stickbreak}
+\index{questions!stick breaking}
+Break a  $1m$ stick in two random places.
+What is the probability that the three resulting pieces form a triangle?
+\end{question}
+
+
+\begin{question}{pythonanagrams}
+\index{questions!Python!anagrams}
+Write a Python function to check whether two strings are anagrams.
+Do a version with and without sorting.
+Why might you want a function that can do this without sorting?
+\end{question}
+
+
+\begin{question}{ncralgorithm}
+\index{questions!Python!N@${}_nC_{r}$}
+Without using the standard library, write a function for ${}_nC_{r}$.
+Do a version with and without recursion.
+\end{question}
+
+\clearpage
+\input{answers/derivexpowx.tex}
+\input{answers/epiandpie.tex}
+\input{answers/ar1processmeanandvar.tex}
+\input{answers/constructzerocorrelation.tex}
+\input{answers/iszerocovarianceindependent.tex}
+\input{answers/stickbreak.tex}
+\input{answers/pythonanagrams.tex}
+\input{answers/ncralgorithm.tex}
+
+\clearpage
+\subsection{Phone interview,  50 minutes}
+\begin{question}{romeojuliet}
+\index{questions!Romeo and Juliet}
+Romeo and Juliet agree to meet between 08:00 and 09:00.
+Each arrives at a random time in the hour and then waits 15 minutes.
+What is the probability that they meet?
+\end{question}
+
+\clearpage
+\input{answers/romeojuliet.tex}
+
+
+\clearpage
+\subsection{Onsite, 6 interviews, 6 hours}
+\begin{question}{davidbeckhamparty}
+\index{questions!David Beckham party}
+Consider a party where there are $N$ people present.
+We have a function that tests whether person $a$ knows person $b$:
+\[
+  \text{knows}(a, b)
+  \text{.}
+\]
+The function returns true or false.
+It is not necessarily symmetric:
+\[
+  \text{knows}(a, b) \neq \text{knows}(b, a)
+  \text{.}
+\]
+For instance, I know David Beckham, but he doesn't know me.
+At a party, every guest knows at least one other person, except for David Beckham, who is also at the party---everybody knows him, but he knows no one.
+Numbering the people at the party from $1$ to $N$ and using the
+$\text{knows}()$
+function, how would you determine Beckham's number?
+Now, pretend Victoria Beckham is also at the party, and that she only knows David, and he only knows her (and everyone at the party knows both of them and at least one other person).
+How would you determine their numbers?
+\end{question}
+
+
+
+\begin{question}{arrayofintegersfindduplicate}
+\index{questions!array find duplicate}
+\index{questions!sorting}
+You have an array of $N$ integers, unsorted:
+\begin{align*}
+  [n_1, n_2, \ldots , n_{N} ]
+  \text{.}
+\end{align*}
+All the integers are unique, except two.
+These are $N$ arbitrary integers---they aren't necessarily the numbers from $1$ to $N$.
+How would you find the duplicate?
+Give an answer that doesn't rely on sorting.
+Give an answer with sorting, and discuss your favourite sorting algorithm.
+\end{question}
+
+
+\begin{question}{criminalsinfield}
+\index{questions!murderers in a field}
+You are guarding 100 murderers in a field, and you have a gun with a single bullet.
+If any one of the murderers has a non-zero probability of surviving, he will attempt to escape. If a murderer is certain of death, he will not attempt an escape.
+How do you stop them from escaping?
+\end{question}
+
+\clearpage
+\input{answers/davidbeckhamparty.tex}
+\input{answers/arrayofintegersfindduplicate.tex}
+\input{answers/criminalsinfield.tex}
+
+
+\clearpage
+\subsection{Phone interview, 45 minutes}
+\begin{question}{regressiontheory2}
+\index{questions!regression theory}
+What are the significance tests used for the parameters estimated in a logistic regression?
+How are they different than those used for a linear regression?
+\end{question}
+
+
+\begin{question}{twopiecesofwood}
+\index{questions!measure pieces of wood}
+You have two pieces of wood of length $a$ and $b$, where $a<b$, and a measuring apparatus with a variance of $\sigma^2$, due to measurement error.
+It costs \pounds 1 per use.
+You only have \pounds2.
+What is the best strategy to measure $a$ and $b$ with minimal variance?
+\end{question}
+
+
+
+\begin{question}{bagnsockstwored}
+\index{questions!bag of socks}
+A bag contains $N$ socks, some of which are black, and some of which are red.
+If two random socks are picked, the probability that they are both red is $\nicefrac{1}{2}$.
+What is the smallest possible value of $N$ for which this is possible?
+\end{question}
+
+\clearpage
+\input{answers/regressiontheory2.tex}
+\input{answers/twopiecesofwood.tex}
+\input{answers/bagnsockstwored.tex}
+
+
+\clearpage
+\subsection{Onsite, 5 interviews, 3 hours}
+\begin{question}{regressiontheory3}
+\index{questions!regression theory}
+What are the assumptions required for a linear regression?
+What is multicollinearity, and what are its implications?
+How would you measure goodness of fit?
+\end{question}
+
+
+\begin{question}{nameafewnonlinearmodels}
+\index{questions!non-linear models}
+What are some non-linear models?
+\end{question}
+
+
+\begin{questionwithnoanswer}
+\index{questions!SQL}
+Write some SQL queries.
+Consider a table with the following headings:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+   Employee name & Department & Salary \\
+\hline
+\end{tabular}
+\end{center}
+\end{questionwithnoanswer}
+
+\begin{subquestion}{sqladdaveragesalary}
+Add a column to show the average department salary for each employee.
+\end{subquestion}
+
+
+\begin{subquestion}{sqlhighestsalary}
+Write a query to return the second highest salary.
+\end{subquestion}
+
+
+
+\begin{question}{sqlfindcustomerswithchanges}
+You are given the following table:
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+     Customer ID    &   Name     &  datestart     & dateend     \\
+\hline
+     A              &   Jon      &  1991-05-06    & 1992-05-06  \\
+     A              &   Jonathan &  1992-05-06    & 1998-10-02  \\
+     B              &   Chris    &  1983-01-01    & 1997-12-16  \\
+     C              &   Sean     &  1991-05-06    & 2000-05-12  \\
+\hline
+\end{tabular}
+\end{center}
+Write a query to return all the customers who have made changes to their details.
+\end{question}
+
+\clearpage
+\input{answers/regressiontheory3.tex}
+\input{answers/nameafewnonlinearmodels.tex}
+\input{answers/sqladdaveragesalary.tex}
+\input{answers/sqlhighestsalary.tex}
+\input{answers/sqlfindcustomerswithchanges.tex}
+
+
+\clearpage
+\subsection{Face-to-face, 2 hours}
+\begin{question}{regressiontheory4}
+\index{questions!regression theory}
+What assumptions are needed for a linear regression?
+Are they the same for a logistic regression?
+How would you test the significance of the parameters for a linear regression?
+Would you use the same test in the case of a logistic regression?
+\end{question}
+
+
+\begin{questionwithnoanswer}
+Answer the following questions about R.
+\end{questionwithnoanswer}
+
+\begin{subquestion}{rdatastructures}
+\index{questions!R!data structures}
+What are some data structures used in R?
+\end{subquestion}
+
+
+
+\begin{subquestion}{rmergetwodataframes}
+\index{questions!R!merge data frames}
+Describe the syntax you would use to merge two data frames.
+\end{subquestion}
+
+
+
+\begin{subquestion}{rapplyvsforloops}
+\index{questions!R!L@\verb+lapply+ vs for loop}
+What is the difference between \verb+lapply()+ and for-loops?
+Which do you prefer?
+\end{subquestion}
+
+
+\begin{question}{grownup}
+Here is a specific problem the team faced last year.
+What model will you build to solve it, and why?
+\end{question}
+
+ \clearpage
+\input{answers/regressiontheory4.tex}
+\input{answers/rdatastructures.tex}
+\clearpage
+\input{answers/rmergetwodataframes.tex}
+\input{answers/rapplyvsforloops.tex}
+\input{answers/grownup.tex}
+
+\clearpage
+\subsection{Video interview, 1 hour}
+\begin{question}{simplerandomwalkhittingprobability}
+\index{questions!simple random walk hitting probability}
+You have a simple random walk,
+\[
+  X_t = \sum_{i=1}^{t}{Z_i}
+\]
+where
+\begin{align*}
+ P(Z_i =  1) &= 0.5 \\
+ P(Z_i = -1) &= 0.5
+ \text{.}
+\end{align*}
+If the process is currently at $k$, meaning $X_0=k$, what is the probability that it would hit $l$ before hitting $0$,
+where $k < l$?
+\end{question}
+
+\clearpage
+\input{answers/simplerandomwalkhittingprobability.tex}
+
+
+
+\clearpage
+\subsection{Phone interview, 1 hour}
+\begin{question}{addnumbersgame}
+\index{questions!add numbers game}
+We are going to play a game using the integers between one and ten, inclusive.
+You start, and say a number between one and ten.
+Thereafter, I add a number between one and ten to your number and say the result.
+Then it is your turn again.
+You add a number between one and ten to the previous number I said.
+We carry on, taking turns to add to the most recent number, and the first person to say 50 wins.
+How much would you wager on this game?
+\end{question}
+
+
+\begin{question}{drop20cards}
+\index{questions!drop 20 cards}
+I have a deck of 52 cards.
+I shuffle the deck, and drop 20 cards randomly into a shredder.
+You then draw two cards from what remains.
+What is the probability that they are both aces?
+\end{question}
+
+
+\clearpage
+\input{answers/addnumbersgame.tex}
+\input{answers/drop20cards.tex}
+
+\clearpage
+
+\subsection{Face-to-face, 1 hour}
+
+\begin{question}{bayescoins}
+\index{questions!Bayes' law and coin flips}
+You have a bag with 1000 coins in it.
+One of them is a double headed coin, the other 999 are fair coins.
+I pick one coin from the bag at random, and flip it ten times.
+It comes up heads all ten times.
+What is the probability that I have selected the double headed coin?
+\end{question}
+
+
+\clearpage
+\input{answers/bayescoins.tex}
+
+
+\section{Old friends}
+Two questions stood out:
+I got the \emph{Air Force One} question three times in 2014, and I got the \emph{Stick Breaking} question more than three times during 2017.\footnote{I never got \emph{Air Force One} in 2017, nor did I get \emph{Stick Breaking} in 2014. Questions seem to go in and out of fashion and there is evidence of cross-pollination.}
+Getting a question multiple times allows you to repeatedly sample the experience, and in doing so, learn more about the inherent uncertainty in interviews.\footnote{See question \ref{q:twopiecesofwood}.}
+Like stand-up comedians who find that different crowds laugh at different parts of the same joke, different interviewers won't always approve of the same answer.
+Some prioritise intuition, while others want you to grind through the mathematics, rigorously proving every step.
+While both of these questions appear in the popular interview manuals---both with elegant solutions---I can report that these answers aren't sufficient to satisfy interviewers---a deeper dive is needed.
+For each of these questions I will present the answers from the manuals and then show how my interviewers wanted them to be answered.
+
+
+\subsection{Air Force One}
+\label{q:airforceone}
+\index{questions!Air Force One}
+This question is sometimes called ``the drunken passenger''.
+\begin{quote}
+One hundred people are in line to board a plane which has exactly 100 seats.
+Each passenger has a ticket assigning them to a specific seat, and the passengers board one at a time.
+The first person to board is drunk, picks a random seat, and sits in it.
+The remaining passengers board; if they find their assigned seat empty, they sit in it.
+If they find their seat taken, they pick a random seat to sit in.
+Everyone boards, and is seated.
+What is the probability that the final person who boards gets to sit in their assigned seat?
+\end{quote}
+This was the first brainteaser I was ever asked in a live interview.
+It is question 3.25 in \citet{JoshiQA}, and the question titled ``Air Force One'' in \citet{WilmottFAQ}.
+Their solutions are below, produced verbatim.
+\citet{JoshiQA}:
+\begin{quote}
+There are a number of ways to do this. Most of
+these are tricky and complicated algebraically. However, if we condition on the
+right event it becomes easier.
+
+Every person who does not sit in their own seat can do three things. Sit in
+seat 1, sit in seat 100 or force someone else to sit in the wrong seat.
+
+If they sit in seat 1, then every subsequent person sits in the correct seat,
+and therefore so does the last passenger.
+
+If they sit in seat 100, then the last passenger sits in the wrong seat.
+
+If they sit in any other seat, we are back in the same situation with fewer
+passengers and seats.
+
+Consider the last passenger who has a choice. This is a passenger below 100
+who has been displaced. Since he is the last one displaced he must either sit in
+seat 100 or seat 1.
+
+The answer is therefore 1/2, since the probability of sitting in either of these
+two seats is equal.
+\end{quote}
+Simple! You think nothing more of it and give this answer when prompted. Then the interviewer says ``I don't understand your answer, could you give a different one?''
+Even though you trust and believe the simple solution, chances are that the interviewer wants to see \emph{some} mathematics.
+The first two times I got this question I got stuck after giving a simple answer, not knowing how to convince the interviewer that I understood the principles behind it.
+\citet{WilmottFAQ} has a similar solution, put slightly differently. (Note that he calls the confused passenger GW, who is about to board Air Force One, but cannot read and therefore ignores his ticket.)
+\begin{quote}
+Sounds really complicated, because of all the people
+who could have sat in the last person’s seat before
+their turn. Start by considering just two people, GW and
+you. If GW sits in his own seat, which he will do 50\%
+of the time, then you are certain to get your allocated
+seat. But if he sits in your seat, again with 50\% chance,
+then you are certain to not get the right seat. So a priori
+result, 50\% chance. Now if there are three people, GW
+either sits in his own seat or in your seat or in the
+other person’s seat. The chances of him sitting in his
+own seat or your seat are the same, and in the former
+case you are certain to get your correct seat and in
+the latter you are certain to not get it. So those two
+balance out. If he sits in the other person’s seat then
+it all hinges on whether the other person then sits in
+GW’s seat or yours. Both equally likely, end result 50-50
+again. You can build on this by induction to get to the
+simple result that it is 50-50 whether or not you sit in
+your allocated seat.
+\end{quote}
+This answer is a bit more informative, and Wilmott left the algebra as an exercise to the reader.
+His suggestion to start with the case of one passenger is a good idea, and it is the first trick discussed in appendix \ref{ap:tricks}.
+The notation can be tricky, so it is good to work through this beforehand so you don't struggle in a live interview.
+Assume that the passengers have tickets numbered from 1 to 100, and that they board in the order of their assigned tickets.\footnote{This assumption makes the notation easier, but it doesn't affect the answer. You can renumber tickets any way we want, the only thing that matters is the order in which they board and how many seats are left for each passenger.}
+Note that any person who gets on the plane and finds his seat occupied \emph{becomes the drunkard.}
+This means that if there are 100 seats, and the drunk passenger sits in seat 50, people 2--49 will simply sit in their assigned seats.
+When person 50 finds his seat occupied, he becomes the drunkard and the problem still exists, but with 51 people instead of 100. The open seats will be
+$1, 51,52,\ldots,99,100$
+and passenger 50 can choose any of them randomly. For simplicity,  relabel seat $1$ and call it seat $50$, and pretend it is the allocated seat for passenger 50 (since it is the ``correct'' choice that makes everyone else get their assigned seats).
+This allows the problem to be solved using induction.
+
+Let $p_n$ be the probability that the last person sits in their assigned seat when there are $n$ seats on the plane.
+You want to determine $p_{100}$, since it is what the question requires.
+Let $A$ be the event that the last person sits in their own seat, and $B_i$ be the seat number chosen by a person who gets on when there are $i$ seats left.
+It follows a discrete uniform distribution from $1$ to $i$, so $P(B_i = k) = \frac{1}{i}$ since there are $i$ seats and the person randomly chooses one.
+Start with the trivial case of $n=1$ where
+\[
+  p_1 = 1
+  \text{,}
+\]
+which doesn't help.
+To keep the notation manageable, assume the $n$th person is assigned to seat $n$.
+Now consider the case with two people,
+\begin{align*}
+  p_2 = P(A|B_2 = 1)P(B_2=1) + P(A|B_2 = 2)P(B_2=2)
+  \text{.}
+\end{align*}
+Here, think of  $P(A|B_2 = 1)$ as ``the probability that the last person sits in his own seat if person just before him sits in their own seat.''
+Similarly, think of  $P(A|B_2 = 2)$ as ``the probability that the last person sits in his own seat if person just before him actually took it by mistake'', which is zero:
+\begin{align*}
+  p_2 &= (1)\frac{1}{2} + (0)\frac{1}{2} \\
+  &= \frac{1}{2}
+\end{align*}
+That's a lot of notation to arrive at something trivial.
+The picture starts to emerge when $n=3$.
+It helps to think about it in words first.
+When there are three people, the first one to board the plane can do one of three things, as highlighted in the following table:
+\begin{center}
+\begin{tabular}{lclc}
+\hline
+ Action                    & $P(\text{Action})$ &  Consequence                             & $P(A|\text{Action})$ \\
+                           & $P(B_3 = k)$       &                                          &               \\
+ \hline
+He sits in seat 1 (his own)& $\nicefrac{1}{3}$  &  Crisis averted                          & 1\\
+He sits in seat 2          & $\nicefrac{1}{3}$  &  The second person becomes the drunkard  & $p_2$\\
+He sits in seat 3          & $\nicefrac{1}{3}$  &  The last person is doomed               & 0\\
+\hline
+\end{tabular}
+\end{center}
+Recall that $A$ is the event where the last person to board the plane gets their allocated seat.
+Express this in the confusing notation:
+\begin{align*}
+  p_3
+  &=
+       \phantom{{} + {}}    P(A|B_3 = 1)P(B_3=1) \\
+      &\phantom{{} = {}} +  P(A|B_3 = 2)P(B_3=2) \\
+      &\phantom{{} = {}} +  P(A|B_3 = 3)P(B_3=3)
+  \\
+  &=
+  (1)   \frac{1}{3}  +
+  (p_2) \frac{1}{3} +
+  (0)   \frac{1}{3} \\
+& =\frac{1}{3}\left(1 +  \frac{1}{2} + 0\right) \\
+& =\frac{1}{3}\left(\frac{3}{2}\right)  \\
+& =\frac{1}{2}
+\text{.}
+\end{align*}
+Doing it for $n=4$ reveals the pattern.
+The first person to board the plane has the following choices:
+\begin{center}
+\begin{tabular}{lclc}
+\hline
+ Action                    & $P(\text{Action})$ &  Consequence                             & $P(A|\text{Action})$ \\
+                           & $P(B_4 = k)$       &                                          &               \\
+ \hline
+He sits in seat 1 (his own)& $\nicefrac{1}{4}$  &  Crisis averted                          & 1\\
+He sits in seat 2          & $\nicefrac{1}{4}$  &  The second person becomes the drunkard  & $p_3$\\
+He sits in seat 3          & $\nicefrac{1}{4}$  &  The third person becomes the drunkard   & $p_2$\\
+He sits in seat 4          & $\nicefrac{1}{4}$  &  The last person is doomed               & 0\\
+\hline
+\end{tabular}
+\end{center}
+\begin{align*}
+  p_4
+      &=  \phantom{{} + {}} P(A|B_4 = 1)P(B_4=1) \\
+      &\phantom{{} = {}} +  P(A|B_4 = 2)P(B_4=2) \\
+      &\phantom{{} = {}} +  P(A|B_4 = 3)P(B_4=3) \\
+      &\phantom{{} = {}} +  P(A|B_4 = 4)P(B_4=4)
+  \\
+ & =
+  (1)   \frac{1}{4} +
+  (p_3) \frac{1}{4} +
+  (p_2) \frac{1}{4} +
+  (0)   \frac{1}{4} \\
+& =\frac{1}{4}\left(1 +  \frac{1}{2} + \frac{1}{2} + 0\right) \\
+& =\frac{1}{4}\left(\frac{4}{2}\right)  \\
+& =\frac{1}{2}
+\text{.}
+\end{align*}
+Doing it for $n$ people, the first person to board the plane can choose from the following actions:
+\begin{center}
+\begin{tabular}{lclc}
+\hline
+ Action                    & $P(\text{Action})$ &  Consequence                             & $P(A|\text{Action})$ \\
+                           & $P(B_n = k)$       &                                          &               \\
+ \hline
+He sits in seat 1 (his own)& $\nicefrac{1}{n}$  &  Crisis averted                          & 1\\
+He sits in seat 2          & $\nicefrac{1}{n}$  &  The second person becomes the drunkard  & $p_{n-1}$\\
+He sits in seat 3          & $\nicefrac{1}{n}$  &  The third person becomes the drunkard   & $p_{n-2}$\\
+He sits in seat 4          & $\nicefrac{1}{n}$  &  The fourth person becomes the drunkard  & $p_{n-3}$\\
+\vdots                     &   \vdots           &   \vdots                                 & \vdots \\
+He sits in seat $i$        & $\nicefrac{1}{n}$  &  The $i$th person becomes the drunkard   & $p_{n-i+1}$\\
+\vdots                     &   \vdots           &   \vdots                                 & \vdots \\
+He sits in seat $n-3$      & $\nicefrac{1}{n}$  &  The fourth-last person becomes the drunkard & $p_{4}$\\
+He sits in seat $n-2$      & $\nicefrac{1}{n}$  &  The third-last person becomes the drunkard & $p_{3}$\\
+He sits in seat $n-1$      & $\nicefrac{1}{n}$  &  The second-last person becomes the drunkard & $p_{2}$\\
+He sits in seat $n  $      & $\nicefrac{1}{n}$  &  The last person is doomed               & 0\\
+\hline
+%                           &                    &                                          & \\
+\end{tabular}
+\end{center}
+\begin{align*}
+  p_n
+  &=
+   \phantom{{} + {}}     P(A|B_n = 1)P(B_n=1) \\
+  &\phantom{{} = {}} + P(A|B_n = 2)P(B_n=2) \\
+  &\phantom{{} = {}} + P(A|B_n = 3)P(B_n=3) \\
+  &\phantom{{} = {}}\phantom{{} + {}} \vdots  \\
+  &\phantom{{} = {}} +  P(A|B_n = i)P(B_n=i) \\
+  &\phantom{{} = {}}\phantom{{} + {}} \vdots  \\
+  &\phantom{{} = {}} +  P(A|B_n = n)P(B_n=n) \\
+&= (1)       \frac{1}{n}  +
+   (p_{n-1}) \frac{1}{n}  +
+   (p_{n-2}) \frac{1}{n}  +
+  \ldots +
+  (p_{n-i+1})\frac{1}{n} +
+  \ldots +
+  (0)        \frac{1}{n}  \\
+&=\frac{1}{n}\left(1 +  \frac{1}{2} + \frac{1}{2} + \ldots + \frac{1}{2} + \ldots + 0\right) \\
+&=\frac{1}{n}\left(\frac{2}{2} + \frac{n-2}{2} + 0\right) \\
+&=\frac{1}{n}\left(\frac{n}{2}\right)  \\
+&=\frac{1}{2}
+\text{.}
+\end{align*}
+For any $n$, the answer is $\nicefrac{1}{2}$.
+If you want more rigour you could do this proof by mathematical induction.
+During an interview it is easy to get confused with the notation.
+The one I used here is not necessarily the easiest and I suggest avoiding too much notation altogether by drawing the tables as above to show your thinking.
+It should be enough to satisfy an interviewer.
+
+
+\subsection{Stick breaking}
+\label{subsec:stickbreaking}
+\index{questions!stick breaking|textbf}
+The question is usually presented as follows:
+\begin{quote}
+Break a 1 metre stick randomly in two places. What is the probability that the three resulting pieces form a triangle?
+\end{quote}
+This is question 3.27 from \citet{JoshiQA}, but they provide more information:
+\begin{quote}
+Let $x$,$y$ be uniformly distributed on $[0, 1]$ and separate the
+unit interval $[0,1]$ into three pieces, what is the probability that the three pieces of the
+line can be constructed into a triangle?
+\end{quote}
+The former wording is ambiguous: it could refer to breaking the stick a single time, selecting one of the pieces, and breaking that one a second time.
+It is a completely different question, but most interviewers won't be aware of this ambiguity.
+Just tell the interviewer you assume that two uniform random numbers are chosen before breaking the stick and you should be fine.
+Joshi gives the following answer, reproduced verbatim:
+\begin{quotation}
+First, we need to transform the condition into something less opaque.
+The three pieces will form a triangle if the longest piece is smaller in size than the sum of the other two.
+This will happen if and only if the biggest piece is of size less than a half.
+Unfortunately, we do not know at the start which piece will be longest.
+However, this happens if precisely one of $x$ and $y$ is less than $\frac{1}{2}$, and $|x-y|<\frac{1}{2}$ (If both were in the same half interval, the longest piece would contain the other half interval.)
+
+As usual when drawing two points, it is best to think of $(x,y)$ as a point in the unit square.
+We work out the geometry of the valid set in order to compute its area.
+The condition that precisely one is less than $\frac{1}{2}$, means that if we divide into  four squares of size $\frac{1}{2}$ we are in the top left or the bottom right.
+Our remaining constraint says that we are below the diagonal from bottom half to top right in
+the top left square, and above the same diagonal in the bottom right square.
+
+The set therefore consists of two half small squares, and is of area equal to one small square.
+The answer is therefore $\frac{1}{4}$.
+\end{quotation}
+There is a lot to unpack here.
+The first thing to convince yourself (and the interviewer) of is that a triangle can only be formed if the largest piece is less than the sum of the other two.
+It is best to draw pictures of the three possible cases:
+\begin{enumerate}
+  \item When the longest piece is less than the sum of the other two
+  \item When the longest piece is equal to the sum of the other two
+  \item When the longest piece is greater than the sum of the other two.
+\end{enumerate}
+You will find that only the first case allows you to draw a triangle.
+The second case is a degenerate case where the triangle you draw becomes a line, and the third case doesn't allow for a triangle to be formed at all.
+The next part of their answer is a bit of brilliant intuition:
+they correctly realised that the largest piece will be less that the other two if and only if precisely one of $x$ and $y$ is less than $\frac{1}{2}$, and $|x-y|<\frac{1}{2}$.
+They then use the trick to integrate a bivariate uniform distribution by using the unit square (see appendix \ref{ap:tricks}).
+If you think about it, it makes sense, but it is difficult to arrive at these conditions by yourself.
+It is even harder to convince an interviewer that these conditions are sufficient if they are expecting the long answer.
+As above, consider the long answer.
+
+Use the notation from \citet{JoshiQA}, and let $x$ and $y$ be two random points on the interval $[0,1]$.
+Break the stick at $x$ and $y$ and then define the three resulting lengths as
+$l_1$,
+$l_2$, and
+$l_3$.
+
+\begin{center}
+\begin{tikzpicture}
+\draw[decorate, decoration={brace, amplitude=10pt}]
+      (0,1) -- (12,1) node (A) [midway, yshift=20pt]{1m};
+\filldraw
+(0,0)
+node[] (start) {}
+--
+(4.5,0)
+circle (2pt)
+node[below, yshift=-0.5ex]  {$\min(x,y)$}
+--
+(8,0)
+circle (2pt)
+node[below, yshift=-0.5ex] (y) {$\max(x,y)$} --
+(12,0)
+node[align=right,  below]
+(end) {};
+\draw[decorate, decoration={brace, mirror ,  amplitude=13pt}]
+(0.1,-1) -- (4.4,-1)  node (A) [midway, align=center,  yshift=-20pt]{\small $l_1 = \min(x,y)$};
+\draw[decorate, decoration={brace, mirror ,  amplitude=13pt}]
+(4.6,-1) -- (7.9,-1)  node (A) [midway, yshift=-20pt]{\small $l_2 = \max(x,y)-\min(x,y)$};
+\draw[decorate, decoration={brace, mirror ,  amplitude=13pt}]
+(8.1,-1) -- (11.9,-1)  node (A) [midway, yshift=-20pt]{\small $l_3 = 1-\max(x,y)$};
+\end{tikzpicture}
+\end{center}
+You know that the triangle can only be formed when the largest piece is less than the sum of the other two, but you have to express this as something that can be used algebraically.
+Let
+$l_\text{min}$,
+$l_\text{mid}$, and
+$l_\text{max}$
+be the minimum, middle, and maximum values of
+$(l_1, l_2, l_3)$.
+Then
+\begin{align*}
+  l_\text{max} < l_\text{min} + l_\text{mid}
+\end{align*}
+and since
+$  l_\text{min} + l_\text{mid} + l_\text{max}  = 1 $,
+you have
+\begin{align*}
+  l_\text{max} < 1 - l_\text{max}  \\
+2 l_\text{max} < 1 \\
+ l_\text{max} < \frac{1}{2}
+ \text{.}
+\end{align*}
+This is a necessary condition, and if
+$\max(l_1, l_2, l_3)$
+has to be less than
+$\nicefrac{1}{2}$
+then all three of
+$l_1$, $l_2$, and $l_3$
+must be less than $\nicefrac{1}{2}$.
+Thus, you have to find
+\begin{align*}
+&\phantom{=}
+P\left(
+l_1 < \frac{1}{2} ,
+l_2 < \frac{1}{2} ,
+l_3 < \frac{1}{2}
+\right)
+\text{.}
+\end{align*}
+To evaluate this probability, integrate on the unit square to find the area where the crucial condition holds for any $(x,y)$ pair.
+It is easier to consider the cases where $x<y$ and $x \geq y$ separately.
+When $x<y$:
+\begin{align*}
+x     &< \frac{1}{2} \\
+   y - x   &< \frac{1}{2} \\
+1 -   y    &< \frac{1}{2}
+\end{align*}
+and you can find the area on the unit square where this holds.
+\index{tricks!unit square integration}
+Write these three conditions in the form $y < mx + c$,
+\begin{align}
+x  &< \frac{1}{2}     \label{eq:stickbreaking:line1}  \\
+y  &< \frac{1}{2} + x \label{eq:stickbreaking:line2}  \\
+y  &> \frac{1}{2}     \label{eq:stickbreaking:line3}
+\text{,}
+\end{align}
+which can be plotted as lines on the unit square:
+\begin{center}
+\begin{tikzpicture}[scale=6, domain=0:1]
+\draw (0,0)     --  (0,1) node[midway, left] {$y$}-- (1,1)  -- (1,0) -- (0,0) node[midway, below] {$x$};
+\filldraw[pattern=dots, pattern color=lightgray] (0.5,0.5) -- (0.5,1) -- (0.0,0.5) -- (0.5,0.5);
+\draw (0.5,0.5) -- (0.5,1) node[midway, right] {(\ref{eq:stickbreaking:line2})};
+\draw (0,0.5)   -- (0.5,1) node[midway, above, sloped] {(\ref{eq:stickbreaking:line1})};
+\draw (0.0,0.5) -- (0.5,0.5) node[midway, below] {(\ref{eq:stickbreaking:line3})};
+\draw (0,0)     -- (1,1) node[midway, below, sloped]  {$y=x$} ;
+
+\begin{scope}[xshift=1.4cm, yshift=-0.2cm, every node]
+
+\draw[decorate, decoration={brace,  amplitude=13pt}] (0,1.08) -- (0.5,1.08) node [midway, yshift=+22pt]{$\frac{1}{2}$};
+\draw[decorate, decoration={brace,  amplitude=13pt}] (-0.03,0.55) -- (-0.03,1.05) node [midway, xshift=-20pt]{$\frac{1}{2}$};
+
+\filldraw[pattern=dots, pattern color=lightgray] (0.5,0.5) -- (0.5,1) -- (0.0,0.5) -- (0.5,0.5);
+\filldraw[pattern=dots, pattern color=lightgray] (0,1.05) -- (0.5,1.05) -- (0.0,0.55) -- (0,1.05);
+
+\end{scope}
+\end{tikzpicture}
+\end{center}
+The area where all the conditions hold is the grey triangle.
+When $y \leq x$, the region of interest will be mirrored in the line $y=x$.
+The answer becomes the area of the square made up by the two triangles shown on the right, which is
+$\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$, or exactly one quarter of the unit square.
+
+This square is what \citet{JoshiQA} described in their answer.
+When you need to integrate a bivariate uniform distribution on $[0,1]$, don't.
+Instead, follow the advice in appendix \ref{ap:tricks} and draw a unit square and construct a shaded region in that square.
+For this question, I would suggest knowing the method from \citet{JoshiQA}, in case the interviewer is looking for that answer, but be ready to work through it step by step as well.
+
+
+% This line sets the tocdepth from here on forward
+% Default is 2
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+
+\section{Regression theory}
+\label{sec:regressiontheory}
+\index{regression theory}
+The classic interview texts do not provide much information on regressions, but regression questions have become increasingly prevalent in recent years.
+The first part in this section deals with multiple linear regression (the case where there are multiple explanatory variables), which is a generalisation of simple linear regression (only one explanatory variable).
+For simple linear regression there are a few additional results that come in handy during interviews and it is worth looking over those.
+After these two, I also provide some notes about logistic regression.
+Linear and logistic regression make up the most prevalent models encountered not only in interviews, but also in practice.
+In all cases, the Wikipedia articles are great overviews and I recommend reading them before interviews, in addition to this chapter.\\
+\begin{itemize}
+  \item \url{https://en.wikipedia.org/wiki/Linear_regression}
+  \item \url{https://en.wikipedia.org/wiki/Simple_linear_regression}
+  \item \url{https://en.wikipedia.org/wiki/Logistic_regression}
+\end{itemize}
+
+\subsection{Linear regression}
+\index{regression theory!linear}
+This is also known as multiple linear regression, to indicate that it uses multiple covariates.
+Let $\beta$ be a matrix of parameters, and let $X$ be a vector of covariates.
+For each observed $Y$, make the following assumption:
+\[
+  Y = X \beta + \varepsilon
+  \text{.}
+\]
+Here, $Y$ is the variate, is $X$ the vector of covariates, and $\beta$ is the vector of parameters.
+
+\subsubsection{Assumptions}
+\begin{description}
+  \item[Weak exogeneity:] the covariates are observed without error.
+  \item[Linearity:] the mean of the variate is a linear combination of the parameters and the covariates.
+  \item[Constant variance:] call it homoscedasticity for bonus points on terminology (in contrast to heteroscedasticity).
+  This means that all the observations of $Y$ are assumed to have the same, constant variance.
+  \item[Independence of errors:] we assume that the errors of the variates are uncorrelated.
+  \item[No multicollinearity:] more properly, the lack of perfect multicollinearity. Assume that the covariates aren't perfectly correlated. See discussion below.
+  \item[Errors have a statistical distribution:] this isn't strictly necessary, but it makes prediction theoretically coherent. The usual assumption is that the errors have a normal distribution, but others can also be used.
+  (For instance, the t-distribution is used for ``robust regression'', where the variance observed is larger than that of the normal distribution.)
+\end{description}
+
+
+
+\subsubsection{If assumptions don't hold}
+
+
+\begin{description}
+  \item[Weak exogeneity:] the sensitivity of the model can be tested to the assumption of weak exogeneity by doing bootstrap sampling for the covariates and seeing how the sampling affects the parameter estimates.
+  Covariates measured with error used to be a difficult problem to solve, as they required errors-in-variables models, which have very complicated likelihoods. In addition, there is no universal fitting library to deal with these. But nowadays, with the availability of Markov Chain Monte Carlo (MCMC) estimation through probabilistic programming languages, it is a lot easier to deal with these using Bayesian hierarchical models (or multilevel models, or Bayesian graphical models---these have many names).
+  \item[Linearity:] the linear regression model only assumes linearity in the parameters, not the covariates. Therefore you could build a regression using non-linear transformations of the covariates, for instance,
+  \[
+    Y = X_1 \beta_1 +
+        X_1^2 \beta_2 +
+        \log(X_1) \beta_3
+    \text{.}
+  \]
+  If you need to further relax the assumption, you are better off using non-linear modelling (see answer \ref{a:nameafewnonlinearmodels} for some examples).
+  \item[Constant variance:] the simplest fix is to do a variance-stabilising transformation on the data. Assuming a constant coefficient of variation rather than a constant mean could also work. Some estimation libraries (such as the \verb+glm+ package in R) allow specifying the variance as a function of the mean.
+  \item[Independence of errors:] this is dangerous because in the financial world things are usually highly correlated in times of crisis. The most important thing is to understand how risky this assumption is for your setting. If necessary, add a correlation structure to your model, or do  a multivariate regression. Both of these require significant resources to estimate parameters, not only in terms of computational power but also in the amount of data required.
+  \item[No multicollinearity:] if the covariates are correlated, they can still be used in the regression, but numerical problems might occur depending on how the fitting algorithms invert the matrices involved.
+  The t-tests that the regression produces can no longer be trusted. All the covariates must be included regardless of what their significance tests say.
+  A big problem with multicollinearity, however, is over-fitting.
+  Depending on how bad the situation is, the parameter values might have huge uncertainties around them, and if you fit the model using new data their values might change significantly.
+  I suggest reading the Wikipedia article on multicollinearity, as it contains useful information: \\
+  \url{https://en.wikipedia.org/wiki/Multicollinearity} \\
+  Multicollinearity is a favourite topic of discussion for interviewers, and they usually have strong opinions about how it should be handled.
+  The model's intended use will determine how sensitive it is to ignoring the error distribution.
+  In many cases, fitting a line using least-squares estimation is equivalent to assuming errors have a normal distribution.
+  If the real distribution has heavier tails, like the t-distribution, how risky will it make decisions based on your outputs?
+  One way to address this is to use a technique like robust-regression.
+  Another way is to think about the dynamics behind the problem and which distribution would be best suited to model them---as opposed to just fitting a curve through a set of points.
+\end{description}
+
+\subsubsection{Significance tests}
+In the ordinary linear regression, the t-statistic is used to test the significance of each parameter,
+\[
+t_{\hat\beta}  =  \frac{\hat\beta - \beta_0}{ \text{stdev}( \tilde\beta) }
+\]
+where
+${\text{stdev}( \tilde\beta)}$
+is the standard deviation of the estimator
+$\tilde\beta$.
+For the classical linear regression with homoscedasticity and normal errors,
+the sampling distribution of
+$t_{\hat\beta}$
+is the student's t-distribution with $(n-p)$ degrees of freedom.
+Here, $\beta_0$ is a hypothesised value to test $\hat\beta$ against, usually set to $0$.
+
+When multicollinearity is present, do not place too much emphasis on the interpretation of these statistics, as the  $\text{stdev}( \tilde\beta) $ will be high and the $\tilde\beta$ will be correlated. The t-statistic should not be confused with the Wald statistic, which is the equivalent test used in the case of logistic regression.
+
+\subsubsection{Parameter estimation}
+Since linear regressions are so well studied and prevalent in the literature, there exists a multitude of ways to estimate the parameters.
+They can largely be grouped into the following:
+\begin{description}
+  \item[Least squares and related techniques.] This gives the well-known result
+  \[
+    \hat{\beta} = (X^T X)^{-1}X^T y
+    \text{.}
+  \]
+  But inverting the matrix might be numerically troublesome in the case of high multicollinearity.
+  Ordinary least squares implies the assumption of the normal distribution, and if you believe there is more variance in your data than the normal distribution can explain, you are better off using robust least-squares, or likelihood-based techniques along with the student's t-distribution.
+  \item[Techniques based on the likelihood.]
+  This necessitates assuming a statistical distribution on the data.
+  To the frequentist, it then means maximising the likelihood.
+  To the Bayesian, it means assuming a prior, multiplying it by the likelihood, and using the arising posterior distribution for inference.
+\end{description}
+Make sure you know some theory behind your favourite method and also know how to fit the linear regression using your favourite library without needing to Google.
+Even better, know how to do this using both R and Python.
+The section below provides a quick derivation of the least-squares result, followed by a section containing the derivation of the maximum likelihood estimate.
+
+
+\subsubsection{Least squares}
+\index{least squares}
+\index{OLS|see {least squares}}
+Assume you have $n$ rows in your dataset, and $p$ covariates.
+Present the model in vectorised form:
+\begin{align*}
+Y = X \beta + \varepsilon
+\text{,}
+\end{align*}
+where $\beta$ is a $(p \times 1)$ vector,
+$X$ is an $n \times p$ matrix, and
+$Y$ is an $n \times 1$ vector.
+The errors can be written as
+\begin{align*}
+\varepsilon = Y-X \beta
+\end{align*}
+and you have the following total sum of squared errors,
+\begin{align*}
+S(\beta) &= \varepsilon^T \varepsilon \\
+&= (Y-X\beta)^T (Y-X\beta)
+\text{.}
+\end{align*}
+For the least-squared-error estimate, you want to find the $\beta$ that minimises the sum of squared errors. Take the derivative and set it equal to zero:
+\begin{align*}
+  S(\beta)
+  &= Y^T Y -\beta^T X^T Y - Y^T X \beta + \beta^T X^T X \beta \\
+  &= Y^T Y - 2 Y^T X \beta + \beta^T X^T X \beta
+  & (\text{result is }n \times 1)
+  \\
+ \frac{\partial}{\partial\beta} S(\beta)
+ &= - 2 X^T Y +
+    2X^T X \beta
+    & (\text{result is }p \times 1)
+    \\
+ \frac{\partial^2}{\partial\beta \partial\beta^T} S(\beta)
+ &= 2
+    X^T
+    X
+    & (\text{result is }p \times p)
+    \text{.}
+\end{align*}
+The easiest way to convince yourself of the matrix derivatives is to work with $2 \times 2$ matrices.
+Next, set the first derivative equal to zero to find a critical point of the function,
+\begin{align*}
+ \frac{\partial}{\partial\beta} S(\beta) &= 0 \\
+  2X^T X \beta - 2 X^T Y &= 0 \\
+  X^T X \beta &=  X^T Y  \\
+   \beta &= (X^T X)^{-1} X^T Y
+\end{align*}
+giving the required result.
+This is a minimum since the second derivative is a positive definite matrix.
+
+\subsubsection{Likelihood}
+\index{likelihood}
+In order to use the likelihood, you need to make an assumption on the error.
+If you assume the individual errors follow a normal distribution,
+$\varepsilon_i \sim \text{Normal}(0, \sigma^2)$ for $ i = 1 ,2 , \ldots , n $,
+then the error vector has a multivariate normal distribution, $\varepsilon \sim \text{MultivariateNormal}(\vec{0}, I_n \sigma^2)$,
+where $I_n$ is the $n \times n$ identity matrix and $\sigma^2$ is the variance assumed on the errors. Using the same $X$, $Y$, and $\beta$ matrices as above, the linear model
+\begin{align*}
+  Y = X \beta + \varepsilon
+\end{align*}
+is equivalent to
+\begin{align*}
+  Y \sim \text{MultivariateNormal}(X \beta, I_n \sigma^2 )
+  \text{.}
+\end{align*}
+The likelihood for this multivariate normal distribution is
+\begin{align*}
+\mathcal{L}(\theta;Y) &= f(Y) \\
+&=
+\frac{1}{\sqrt{(2\pi)^n \determinant{I_n \sigma^2} }}
+\exp{
+  \left(
+  -\frac{1}{2}
+   (Y-X\beta)^T  (I_n \sigma^2)^{-1} (Y - X \beta)
+  \right)
+} \\
+&=
+\frac{1}{\sqrt{(2\pi)^n  } \sigma^{n}}
+\exp{
+  \left(
+  -\frac{1}{2 \sigma^2}
+   (Y-X\beta)^T (Y-X\beta)
+  \right)
+}
+\end{align*}
+where $f(Y)$ is the pdf of the multivariate normal distribution.
+The vector $\theta = \{ \beta, \sigma \}$ is the set of all parameters you want to estimate.
+The maximum likelihood estimate (MLE) is the set of parameters that maximise the likelihood,
+\begin{align}
+\label{eq:regressiontheory:argmax}
+\hat{\theta}_{\text{MLE}}
+&=
+\argmax_{\theta}
+\mathcal{L}(\theta;Y)
+\text{.}
+\end{align}
+Since the logarithm is a strictly increasing function, the likelihood and log likelihood will have a maximum at the same value of $\theta$,
+which means either the likelihood or the log likelihood can be used, given that they will yield the same answer.
+The log likelihood is more convenient to work with:
+\begin{align*}
+\log\mathcal{L}(\theta;Y)
+&=
+-\log\left(\sqrt{(2\pi)^n} \right)
+-\log\sigma^{n}
+  -\frac{1}{2 \sigma^2}
+   (Y-X\beta)^T (Y-X\beta)
+   \text{.}
+\end{align*}
+As with the least-squares derivation, you need to find a critical point.
+Take the derivative with respect to the parameters of interest
+\begin{align*}
+ \frac{\partial}{\partial\beta}
+\log\mathcal{L}(\theta;Y)
+ &=
+  \frac{1}{2 \sigma^2}
+(  2 X^T Y -
+    2X^T X \beta )
+    \\
+ \frac{\partial}{\partial\sigma}
+\log\mathcal{L}(\theta;Y)
+ &=
+-\frac{n}{\sigma}
++  \frac{1}{\sigma^3}
+   (Y-X\beta)^T (Y-X\beta)
+   \text{,}
+\end{align*}
+which you set equal to zero
+\begin{align*}
+0
+ &=
+  \frac{1}{2 \sigma^2}
+(  2 X^T Y -
+    2X^T X \beta )
+    \\
+0
+ &=
+-\frac{n}{\sigma}
++  \frac{1}{\sigma^3}
+   (Y-X\beta)^T (Y-X\beta)
+   \text{,}
+\end{align*}
+and solving this system of equations yields the maximum likelihood estimates
+\begin{align*}
+\hat{\beta}_{\text{MLE}} &= (X^T X)^{-1} X^T Y
+    \\
+\hat{\sigma}_{\text{MLE}}
+ &=
+\sqrt{
+\frac{1}{n}
+   (Y-X\hat{\beta}_{\text{MLE}})^T (Y-X\hat{\beta}_{\text{MLE}})
+   }
+   \text{.}
+\end{align*}
+Check that these estimates do in fact maximise the log likelihood using the second order derivatives,
+\begin{align*}
+ \frac{\partial^2}{\partial\beta \partial\beta^T}
+ \log\mathcal{L}(\theta;Y)
+ &=
+ - \frac{1}{ \sigma^2} X^T X
+ \\
+ \frac{\partial^2}{\partial\sigma^2}
+\log\mathcal{L}(\theta;Y)
+ &=
+\frac{1}{\sigma^2}
+\left(
+ -\frac{3}{\sigma^2}
+   (Y-X\beta)^T (Y-X\beta)
+   + n
+\right)
+   \text{.}
+\end{align*}
+The first is
+$ -\nicefrac{1}{ \sigma^2}$ multiplied by a positive definite matrix, which will be negative definite.
+The second evaluates to
+\[
+-2n^2
+\left(
+  (Y-X\hat{\beta}_{\text{MLE}})^T
+  (Y-X\hat{\beta}_{\text{MLE}})
+\right)^{-1}
+\]
+when $\sigma = \hat{\sigma}_{\text{MLE}}$, which is also a negative quantity multiplied by a positive definite matrix.
+
+
+Notice that the $\beta$ estimates are the same for least-squares estimation and maximum likelihood estimation.
+This is only due to the assumption of the normal distribution and it will not hold in general for GLMs.
+In addition, there will seldom be an analytical solution like the one presented.
+For most GLMs you have to maximise the likelihood---or rather, the log likelihood---numerically, using an iterative approach like Newton's method, or similar.
+
+
+\subsection{Simple linear regression}
+\index{regression theory!simple linear}
+
+The Simple linear regression is the special case of the linear regression with only one covariate
+\[
+  y = \alpha + x \beta
+  \text{,}
+\]
+which is just a straight line fit.
+Interviewers like this model for its aesthetically pleasing theoretical properties.
+A few of them are described here, beginning with parameter estimation.
+For $n$ pairs of $(x_i, y_i)$,
+\[
+  y_i = \alpha + \beta x_i + \varepsilon_i
+\]
+minimise the sum of squared errors,
+\[
+\sum_{i=1}^{n}{  \varepsilon_i^2 }
+  =
+\sum_{i=1}^{n}{ (y_i -  \alpha + \beta x_i)^2 }
+\text{,}
+\]
+as before, but without matrices.
+The least-squares estimators are:
+\begin{align}
+  \hat{\alpha} &= \bar{y} - \hat\beta \bar{x} \nonumber \\
+  \hat{\beta} &=
+  \frac
+  {\sum_{i=1}^{n}{ (y_i - \bar{y}) (x_i - \bar{x}) }}
+  {\sum_{i=1}^{n}{ (x_i - \bar{x})^2 }} \nonumber \\
+  &=
+  \frac
+  {\Cov(x, y)}
+  {\Var(x)} \label{eq:simple_linear_regression:var} \\
+  &= \rho_{xy} \frac{s_y}{s_x} \label{eq:simple_linear_regression:corr}
+  \text{.}
+\end{align}
+Use
+\begin{align*}
+\bar{y} &= \frac{1}{n}\sum_{i=1}^{n}{y_i} \\
+\bar{x} &= \frac{1}{n}\sum_{i=1}^{n}{x_i}
+\end{align*}
+where $\Var$ and $\Cov$ are the variance and covariance, respectively.
+Likewise,
+$\rho_{xy}$,
+$s_y$, and
+$s_x$ are the sample correlation coefficient and sample standard deviations.
+The final two lines of the equation,
+(\ref{eq:simple_linear_regression:var})
+and
+(\ref{eq:simple_linear_regression:corr}),
+are of utmost importance.
+Learn them by heart, as they make many questions about simple linear regression much easier.
+For example, ``when is the slope of a straight-line fit through a set of points $(x_i,y_i)$ equal to the correlation between $x$ and $y$?''
+
+The final important result is that, for a simple linear regression, the $R^2$ value (which measures the proportion of variance in $y_i$ explained by the variance in $x_i$) is equal to the sample correlation coefficient squared,
+\[
+  R^2 = \rho_{yx}^2
+  \text{.}
+\]
+
+
+\subsection{Logistic regression}
+\index{regression theory!logistic}
+Both the logistic regression and linear regression are GLMs, as introduced by \citet{GLM}, but users might spend years using regressions without ever encountering this term.
+The techniques have different names in different fields, a phenomenon that has been made worse by the recent ``rediscovery'' of linear regression and logistic regression in Machine Learning.
+It would be prudent to know some specialist theory and important results  about each of the three regressions discussed in this section, using the terminology that pertains to finance.
+
+The assumptions for the logistic regression from the perspective of a GLM are identical to those of the linear regression, except that you are assuming linearity on the logit scale.
+Let the variate of interest $y$ be a binary variable taking values of $0$ and $1$, then
+\begin{align*}
+y &\sim \text{Bernoulli}(p) \\
+\text{logit}(p) &= X\beta  \quad (\text{logit link function})\\
+\text{or}& \\
+p &= \text{logistic}(X\beta)
+\text{.}
+\end{align*}
+The only difference between the logistic and the probit regression is the link function.
+For the probit regression you have
+\begin{align*}
+y &\sim \text{Bernoulli}(p) \\
+\text{Probit}(p) &= X\beta  \quad (\text{Probit link function})\\
+\text{or}& \\
+p &= \Phi(X\beta)
+\text{,}
+\end{align*}
+where $\Phi$ is the cumulative distribution function (CDF) of the standard normal distribution, and   $\text{Probit}(x)$ is the quantile function (or inverse CDF).\footnote{Notice that the naming convention isn't consistent, mostly due to historical reasons beyond the scope of this text.}
+The R-square measure as defined for the linear regression doesn't exist for the logistic regression.
+There are a few measures that act as pseudo R-squared, but I won't discuss them here---see the Wikipedia page for details.%
+\footnote{\url{https://en.wikipedia.org/wiki/Logistic_regression\#Pseudo-R2s}}
+
+\subsubsection{Significance tests}
+Where the linear regression uses the t-statistic for significance testing, the logistic regression has the Wald-statistic. Asymptotically, it has a chi-squared distribution:
+\[
+W_{\hat\beta} =
+\frac{(\hat\beta - \beta_0)^2}{ \text{stdev}( \tilde\beta) }
+\sim \mathcal{X}^2
+\]
+where $\beta_0$ is a hypothesised value, as with the linear regression.
+
+
+
+\subsubsection{Parameter estimation}
+
+Similar to the linear regression, there are two schools of thought about parameter estimation for the logistic regression:
+\begin{description}
+  \item[Least squares and related techniques:]
+    unlike the linear regression, you cannot get a closed-form solution and thus you have to use some sort of iterative method. Iteratively reweighted least squares are usually employed.
+  \item[Techniques based on the likelihood:]
+  a frequentist would need to maximise the likelihood using a numerical technique, whereas a Bayesian would evaluate the posterior distribution numerically, or sample from it using MCMC.
+\end{description}
+
+
+
+\section{Soft interview}
+
+\subsection{Questions from them}
+
+For more examples of soft interview questions (with suggested answers) see \citet{JoshiQA}.
+Be ready to give some answers to the following questions:
+\begin{itemize}
+  \item Can you walk me through your CV?
+  This is common, and is usually asked at the start of a phone interview.
+  Rehearse an answer and try to keep it shorter than three minutes.
+  It is vital to prepare a response and to tell it like a story.
+  It looks bad if you can't articulate the contents of your CV.
+  \item Why are you looking for a new job?
+  I once had a phone interview where, upon answering the call, the guy immediately blurted ``Hi OK tell me why you want to leave your current job for one in finance?''
+  He didn't even pause to tell me his name.
+  You should have your answer to this question so well rehearsed that it sounds completely natural.
+  \item Why do you want to work in finance?
+  \item Why do you want to work for this firm and not our competitor?
+\end{itemize}
+%
+Try not to start your sentences with ``So\ldots''.
+It takes discipline to avoid, but it makes you sound more confident.
+Also try and keep the number of filler words such as ``like'', ``umm'', and ``you know'' to a minimum.
+You don't have to completely remove them to the point of sounding unnatural, but it is important to pay attention to how often you use them---especially under pressure.
+This is most relevant to phone interviews, where your first impression is wholly determined by your eloquence.
+Rehearse some answers to the questions above aloud.
+Keep in mind that there may be a difference between your accent and that of the interviewer and adjust your tempo and enunciation accordingly.
+
+\subsection{Questions for them}
+
+At the end of every interview, interviewers usually ask if you have questions for them.
+Have something to ask them.
+If there are any obvious questions that come to light during the interviews, ask them.
+I've seen interviewing guides online suggest questions like
+``What is your greatest challenge over the coming months, and how will I be able to contribute to a solution?''
+In my opinion this question feels rehearsed---don't bother with it.
+Here are some questions you can ask, which are also relevant to the job:
+\begin{itemize}
+  \item Why is your team looking to hire at the moment? (Is it because of expansion, or to replace someone who recently left? This is important to know before accepting a position.)
+  \item What operating systems do the team use?
+  What are the proportions of Windows, Apple, GNU/Linux?
+  \item  What does the team use for technical documentation? LaTeX, Wiki, Word, or nothing? (Don't say ``knowledge management'', you aren't interviewing to become a management consultant.)
+  \item  What software does the team use for version control? Svn, Git, Mercurial, Team Foundation Server, or appending
+  \verb+V1+,
+  \verb+V2+,
+  \verb+V3+
+  to foldernames?
+  \item  What programming languages does the team use? R, Python, C++, Julia, Matlab?
+  For data analysis? For scripting? For production?
+  \item  Is the team made up of Bayesians, frequentists, or whatever gets the job done?
+  \item  What are the backgrounds of the other team members? What would someone with my background contribute?
+  \item  Are modellers expected to write the code to implement their models, or is this handled by developers?
+  \item  How are datasets accessed? SQL (Postgres, MySQL, MSSQL, sqlite), Hadoop, csvs, Excel, shared folders, or do people throw around USB sticks?
+  \item  Are there formal mentor/mentee arrangements, or does this happen informally, or perhaps not at all?
+  \item  Is there a formal process for requesting the installation of new software libraries?
+  This is more R and Python specific, but it is important to ask if you expect to work with the latest technologies.
+\end{itemize}
+Even if you have asked these questions of some of the team members, ask them again and see whether you get the same answers.
+
+
+
+
+
+
+
+\clearpage
+\appendix
+
+\phantomsection
+\addcontentsline{toc}{section}{Appendix}
+\section*{Appendix}
+
+% This line sets the tocdepth from here on forward
+% It means we hide subsections
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+\section{Tricks}
+\label{ap:tricks}
+\index{tricks}
+Here are some tricks I found useful while being brainteased.
+
+\subsection{Start with simplest case}
+\index{tricks!start with simplest case|textbf}
+Start with the simplest case, and generalise eafter.
+This often involves considering the case where $n=1$, then $2,3,4$, and so forth.
+Though it feels simple it is not devoid of rigour, since it is often mandatory preparation for a proof by induction.
+It is the most important trick of all.
+During an interview, a never-before-seen brainteaser usually catches you by surprise and affects your ability to think clearly---especially since you have only 10 or 20 minutes to make an attempt.
+When this happens the $n=1$ trick becomes a saviour.
+Even if you don't manage to solve the problem you'll have shown the interviewer that you approach a difficult problem by breaking it down to its integral parts.
+The best example of this appears in question
+\ref{q:simplerandomwalkhittingprobability}.
+Find further examples of this trick in questions
+\ref{q:arraymissingnumber:a},
+\ref{q:criminalsinfield},
+and
+\ref{q:bagnsockstwored}.
+
+\subsection{Skip integration by drawing the unit square}
+\index{tricks!unit square integration|textbf}
+If a question involves two uniform distributions, chances are you can skip any integration by drawing a unit square and calculating areas on it.
+More often than not this is also what the interviewer wants.
+For examples of this, see the \emph{Stick Breaking} problem in section \ref{subsec:stickbreaking} and question \ref{q:romeojuliet}.
+In both of these examples the integration would be cumbersome, but calculating the areas of triangles on the unit square is simple (if you correctly identify the areas of interest, that is).
+The same idea is used in question \ref{q:rolltwodice} for a discreet sum.
+
+\subsection{Recursion}
+This is a trick I never encountered before I started interviewing.
+It appears in section \ref{q:airforceone} with the \emph{Air Force One} question, as well as question \ref{q:simplerandomwalkhittingprobability}.
+The idea is to express the answer you want as $P(A_n)$ or $p_n$ and then express $p_n$ in terms of $p_{n-1}$.
+Then you can use recursion until you can solve for the quantity you want.
+The same trick is sometimes used to calculate expectations of interest (using the Law of Total Expectation).
+For a good example, see the question called ``Biased coins'' from \citet{WilmottFAQ}, and also the one called ``Two heads'' from the same book, which I reproduce here as a minimal-working example showing the method:
+
+\begin{quote}
+ When flipping an unbiased coin, how long do you have to wait on average before you get two heads in a row?
+\end{quote}
+I don't like the notation from Wilmott's answer since it is unclear whether his $N_n$ denotes an expectation or a probability, so I will amend it below.
+Let $N_n$ be a random variable representing the number of coin flips you have to do to get $n$ heads in a row.
+It satisfies the recursion relationship:
+\begin{align*}
+  N_n &=
+  \overbrace{ \frac{1}{2} (N_{n-1} + 1)}^{n\text{th throw is heads}}
+  +
+  \overbrace{\frac{1}{2} (N_{n-1} + 1 + N_n)}^{n\text{th throw is tails}}
+  \\
+  \frac{1}{2}  N_n &=
+   N_{n-1} + 1
+  \\
+  N_n &=
+  2 N_{n-1} + 2
+  \text{.}
+\end{align*}
+Wilmott solves for $N_n$, but that doesn't make sense if it is a random number.
+Instead, you should solve for the expected value of $N_n$,
+\begin{align*}
+  E(N_n) &= 2 E(N_{n-1}) + 2
+  \text{.}
+\end{align*}
+The expected number of throws to get heads once is $2$, so
+$E(N_1) = 2$ (use the negative binomial distribution if you need to prove this),
+\begin{align*}
+  E(N_2) &= 2(2) + 2 = 6
+  \text{.}
+\end{align*}
+This has the general solution of
+\begin{align*}
+  E(N_n) = 2^{n+1} - 2
+\end{align*}
+which you can prove using mathematical induction.
+Questions that require martingale theory can often also be solved using the recursion technique, albeit with substantially more algebra (like question \ref{q:simplerandomwalkhittingprobability}).
+
+\subsection{Central Limit Theorem}
+\index{tricks!Central Limit Theorem|textbf}
+Here the trick lies in identifying when a question is actually about the Central Limit Theorem.
+I will not review the theory here, but make sure you understand the intuitive consequences:
+if you sum a large number of random variables, the distribution of the sum approaches the normal distribution.\footnote{How many are required? Statisticians agree that 30 is large enough to be treated as infinity.}
+For instance, here is a trick question:
+\begin{quote}
+You need 100 metres of wood.
+One factory makes 100 metre pieces and another factory makes 1 metre pieces.
+Both factories cite a 20\% error on their output.
+Does it matter which factory you use?
+\end{quote}
+Note that the expected length of the end product is the same, and so is the variance.
+The difference is the distribution.
+You don't know what the error distribution of the $100m$ piece will be (the question doesn't tell you), but the sum of $1m$ pieces will have a distribution that is near normal.
+If you worry about large outliers you probably prefer the normal distribution.
+This is why insurers write millions of small policies rather than one big one.
+Under some regularity conditions, their total loss will follow a normal distribution.
+See question \ref{q:coin100flipsgamble} for the normal approximation to the binomial distribution, which is the same as the Central Limit Theorem applied to a sum of Bernoulli random variables.
+
+
+\subsection{Normal distribution probabilities in your head}
+\index{tricks!normal probabilities in your head|textbf}
+A useful property of the normal distribution is that approximately 95\% of its mass lies within two standard deviations of the mean.
+Some questions, like question \ref{q:coin100flipsgamble}, use this by having their quantities of interest lie two standard deviations from the mean.
+The actual probability at this point is
+\[
+\Phi(2)
+=  0.97725
+\text{.}
+\]
+That is, if you have
+$Z \sim \text{Normal}(0,1)$
+then
+$P(-2 <  Z \leq 2) = \Phi(2)- \Phi(-2) = 0.9545$.
+
+
+\subsection{Law of Total Expectation}
+\index{tricks!Law of Total Expectation|textbf}
+Many brainteasers are interested in the expectation of some event, or the expected number of trials.
+Thus, it is useful to know the Law of Total Expectation:
+If $ A_1, A_2, A_3, \ldots, A_n$ are mutually disjoint and exhaustive, then
+\[
+  \E(Z) = \sum_{i=1}^{n}{
+    \E(Z| A_i)P(A_i)
+  }
+  \text{.}
+\]
+For an example, see question \ref{q:bivariatenormalmax}.
+
+
+\section{Code}
+\subsection{Expectation of maximum of the bivariate normal distribution}
+\label{ap:mvtnormproof}
+Here is R code for a pseudo proof-by-simulation of question \ref{q:bivariatenormalmax}:
+
+\inputminted{r}{./plots/mvtnorm/simtest.R}
+
+
+\subsection{Why we need virtual functions}
+\label{ap:virtualfunctions}
+I produce my own take on the answer found at \\
+\url{https://stackoverflow.com/questions/2391679/ddg#2392656}\\
+Say you are working for the tax man, and you want to create a function that assigns the right tax rate to cars.
+If you don't know the type of car, you will assume it burns fuel; make a class for generic cars and one for electric cars:
+\inputminted{cpp}{./plots/virtualfunction/WithoutVirtual.cpp}
+When you run this program, the output is:
+\VerbatimInput{./plots/virtualfunction/WithoutVirtual.txt}
+Oh no! The final line is incorrect, because you've accidentally treated the Tesla as a general car.
+You would have to overload the \verb+queryEmssionsForTax+ function to take a
+class of type
+\verb+ElectricCar+.
+But you don't want to burden the author of the
+\verb+ElectricCar+
+class with a list of external functions to maintain.
+The solution is to use a virtual function.
+Below, the only changes are to add
+\verb+virtual+
+to the function in the
+\verb+Car+
+class and
+\verb+override+
+to the function in the child class:
+\inputminted{cpp}{./plots/virtualfunction/WithVirtual.cpp}
+Now the output becomes:
+\VerbatimInput{./plots/virtualfunction/WithVirtual.txt}
+
+\subsection{SQL query practise script}
+\label{ap:sqlite}
+This script loads the tables and gives you the ability to test SQL queries.
+I use the \verb+pandas+ and \verb+sqlite+ libraries, but you probably only need \verb+sqlite3+.
+I also use Python since it is easy to install on most operating systems and it comes with sqlite functionality as standard.
+\inputminted{python}{./plots/sql/sql.py}
+
+\clearpage
+\section{Crib sheet}
+\label{ap:cribsheet}
+Print this sheet and keep it with you during phone interviews, but make sure you are able to reproduce it wholly from memory at some point in your life.
+Actual familiarity with the concepts is better than rote, but a combination of the two is required for good interview performance.
+
+
+\begin{multicols}{2}
+
+\subsection*{Miscellaneous}
+ARMA(p, q):
+\[
+ Y_t = \alpha_0 +
+ \underbrace{
+  \sum_{i=1}^{p}{ \alpha_i Y_{t-i} }
+  }_{\text{Autoregressive}}
+  +
+ \overbrace{
+  \sum_{i=1}^{q}{ \beta_i \varepsilon_{t-i} }
+  }^{\text{Moving average}}
+  + \varepsilon_{t}
+\]
+\noindent
+GARCH(p, q):
+\begin{align*}
+ Y_t &= \sigma_t Z_t  \quad \text{ where } Z_t \sim N(0,1) \\
+ \sigma^2_{t}
+ &=
+ \alpha_0 +
+  \sum_{i=1}^{p}{ \alpha_i Y^2_{t-i} }
+  +
+  \sum_{i=1}^{q}{ \beta_i \sigma^2_{t-i} }
+\end{align*}
+
+
+\begin{align*}
+P(A_i|B)
+&= \frac {P(B|A_i)P(A_i)} {P(B)} \\
+&= \frac {P(B|A_i)P(A_i)} { \sum_{j} P(B|A_j)P(A_j) }
+\end{align*}
+
+\begin{align*}
+{}_nC_{r} =
+\binom{n}{k} &= \frac{n!}{ (n-k)! k! }
+\end{align*}
+
+\begin{align*}
+  \sum_{k=0}^{n-1} {ar^k}    &= a \left(\frac{1-r^n}{1-r}\right) \\
+  \sum_{k=0}^{\infty} {ar^k} &= \frac{a}{1-r} \text{ for } |r|<1
+\end{align*}
+
+\subsection*{Regression assumptions}
+
+\begin{itemize}[itemsep=-2pt, topsep=2pt, partopsep=0pt]
+  \small
+  \item The covariates are observed without error (weak exogeneity)
+  \item Linearity
+  \item Constant variance (homoscedasticity)
+  \item Independence of errors
+  \item No (or very little) multicollinearity
+  \item Statistical distribution, if required
+\end{itemize}
+
+\subsection*{Linear regression}
+\[
+    \hat{\beta} = (X^T X)^{-1}X^T y
+\]
+
+\[
+t_{\hat\beta}  =  \frac{\hat\beta - \beta_0}{ \text{stdev}( \tilde\beta) } \sim t(v=n-p)
+\]
+
+\subsection*{Simple linear regression}
+\begin{align*}
+  \hat{\alpha} &= \bar{y} - \hat\beta \bar{x}  \\
+  \hat{\beta} &=
+  \frac
+  {\sum_{i=1}^{n}{ (y_i - \bar{y}) (x_i - \bar{x}) }}
+  {\sum_{i=1}^{n}{ (x_i - \bar{x})^2 }}  \\
+  &=
+  \frac
+  {\Cov(x, y)}
+  {\Var(x)} \\
+  &= \rho_{xy} \frac{s_y}{s_x}
+\end{align*}
+
+\[
+  R^2 = \rho_{yx}^2
+\]
+
+\subsection*{Logistic regression}
+\[
+W_{\hat\beta}
+=  \frac{(\hat\beta - \beta_0)^2}{ \text{stdev}( \tilde\beta) }
+\sim \mathcal{X}^2
+\]
+
+
+\subsection*{Calculus}
+The following are important for most brainteasers:
+\begin{itemize}
+  \item
+Product rule of differentiation:
+\[
+  \frac{d}{dx}
+  g(x)f(x) =
+  g'(x)f(x) +
+  g(x)f'(x)
+\]
+
+  \item
+Integration by parts:
+\[
+\int_{a}^{b}{ u dv }
+=
+uv\Big\vert_{x=a}^{x=b} - \int_{a}^{b}{ v du }
+\]
+  \item
+Integration and differentiation rules involving $e^{x}$ and $\ln(x)$.
+\end{itemize}
+
+
+\end{multicols}
+\clearpage
+
+
+
+
+\phantomsection
+\addcontentsline{toc}{section}{References}
+
+\bibliography{books.bib}
+%\bibliographystyle{plainnat}
+\bibliographystyle{chicago}
+
+\phantomsection
+\addcontentsline{toc}{section}{Index}
+\printindex
+
+\end{document}
+

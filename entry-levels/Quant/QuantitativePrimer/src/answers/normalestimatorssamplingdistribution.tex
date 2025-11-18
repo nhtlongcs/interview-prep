@@ -1,0 +1,49 @@
+\begin{answer}{normalestimatorssamplingdistribution}
+This is a question about sampling theory in the frequentist sense.
+If you have an estimator for the parameter, and you draw repeated samples from the population, what will the distribution of the estimator be?
+Note that the question isn't Bayesian, since you aren't assuming random parameters, but merely that the estimator will have a distribution due to the random sampling of the values it depends on.
+The right way to estimate the parameters using the samples are through the sample mean and variance,
+\begin{align*}
+  \tilde{\mu}_i &= \bar{y}_i =  \frac{1}{n}\sum_{j=1}^{n}{y_{ij}} \\
+  \tilde{\sigma}^2_i &=
+  \frac{1}{n-1} \sum_{j=1}^{n}{(y_{ij} - \bar{y}_i)^2}
+ \text{.}
+\end{align*}
+If you draw histograms of these values, the distribution of
+$\tilde{\mu}_i$
+will be normal,
+because it is the sum of normal random variables $y_{ij}$ and thus also normal.
+The distribution of
+$\tilde{\sigma}^2_i$
+will be chi-squared, because it is the sum of a bunch of squared normal random variables.
+The way to prove this is to use the formula for random variable transformation.
+If $Z = g(X)$
+then
+\[
+  f_Z(x) =  f_X( g^{-1}(x) )\left| \frac{d}{dx} g^{-1}(x) \right|
+\]
+where
+$f_Z(x)$ is the pdf of $Z$ and
+$f_X(x)$ is the pdf of $X$.
+When I wrote this down, my interviewer
+checked his notes and said
+``No, that is wrong, you have to use the following formula'' and produced
+\[
+  f_Z(z) =  f_X( g^{-1}(z) )\left| \frac{d}{dz} g^{-1}(z) \right|
+  \text{.}
+\]
+Then he asked me to derive it to make sure I understood where it came from.
+Here is the derivation:
+\begin{align*}
+  F_Z(x)
+  &=  P(Z < x) \\
+  &=  P(g(X) < x) \\
+  &=  P(X < g^{-1}(x)) \\
+  &=  P(X < g^{-1}(x)) \\
+  &=  F_X( g^{-1}(x) ) \\
+  f_Z(x) &=  f_X( g^{-1}(x) )\left| \frac{d}{dx} g^{-1}(x) \right|
+  \text{.}
+\end{align*}
+Notice that I used $x$ in my derivation, not $z$.
+The interviewer nodded and moved on to the next question.
+\end{answer}
