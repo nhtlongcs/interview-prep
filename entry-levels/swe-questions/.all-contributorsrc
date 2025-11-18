@@ -1,0 +1,73 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "tamhoang1412",
+      "name": "Tam Hoang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7721631?v=4",
+      "profile": "https://github.com/tamhoang1412",
+      "contributions": [
+        "content",
+        "ideas"
+      ]
+    },
+    {
+      "login": "huytd",
+      "name": "Huy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/613943?v=4",
+      "profile": "https://huy.rocks",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "TD2106",
+      "name": "Duy Le",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20773434?v=4",
+      "profile": "https://github.com/TD2106",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "nvh95",
+      "name": "Hung Viet Nguyen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8603085?v=4",
+      "profile": "https://hung.dev",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "phamngocquy",
+      "name": "Pham Ngoc Quy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22728098?v=4",
+      "profile": "https://app.codesignal.com/profile/haku",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "ducminhgd",
+      "name": "Giã Dương Đức Minh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4539428?v=4",
+      "profile": "https://github.com/ducminhgd",
+      "contributions": [
+        "content"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "backend-swe-interview-questions",
+  "projectOwner": "tamhoang1412",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true,
+  "commitType": "docs",
+  "commitConvention": "angular"
+}
